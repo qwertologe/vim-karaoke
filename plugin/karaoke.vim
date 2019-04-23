@@ -106,8 +106,8 @@ function! KaraokeNextPage()
 endfunction
 
 function! KaraokeThisLine()
-  call KaraokeSay(expand("<cword>"))
-  "call KaraokeSay(getline('.'))
+  "call KaraokeSay(expand("<cword>"))
+  call KaraokeSay(getline('.'))
 endfunction
 
 function! KaraokeChangeSpeed(step)
