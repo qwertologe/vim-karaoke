@@ -1,0 +1,68 @@
+*karaoke.txt*  Plugin for speakink text in Vim.
+
+karaoke                                       *karaoke* *speak* *blind*
+Last Change: April 22, 2019
+
+|karaoke-description|   Description
+|karaoke-usage|         Usage
+|karaoke-settings|      Settings
+|karaoke-contact|       Contact
+|karaoke-license|       License
+
+For Vim version 7.0 or later.
+This plugin only works if 'compatible' is not set.
+{Vi does not have any of these features.}
+
+==============================================================================
+DESCRIPTION                                             *karaoke-description*
+
+Karaoke speaks single lines or all remaining lines of your text in Vim.
+
+It needs a script 'say' in your search path e.g. /usr/local/bin.
+This script gets the text at stdin. The first parameter is the speed e.g. 1.
+Remember: sudo chmod 750 /usr/local/bin/say
+
+See folder 'examples' for a simple implementation.
+
+==============================================================================
+USAGE                                                         *karaoke-usage*
+
+                                                 *'snippets'* *g:snippets_dir*
+  <C-@> (ctrl-space): Activate karaoke
+  <Space>: Speak until the end (karaoke mode)
+    The cursor remains on the first line until karaoke ends or by ctrl-space
+    This should spare the Braille display.
+  <C-c> (ctrl-c): Abort playing and (if active) karaoke mode
+  <Up> (cursor up): Goto next line and speak the line
+  <Down> (cursor down): Goto previous line and speak the line
+  <PageUp>: Goto previous page and speak the line
+  <PageDown>: Goto next page and speak the line
+  <Return>: Speak current line
+  - decrease speak speed by 10%
+  + increase speak speed by 10%
+
+==============================================================================
+SETTINGS                                  *karaoke-settings* *g:snips_author*
+
+You can configure karaoke - here are the defaults:
+
+  g:Karaoke_page_regex = '^# Seite ' " used for <PageUp/Down>
+  g:Karaoke_speed = 15 " speed (10<->20 relate to 1.0<->2.0 for play)
+  g:Karaoke_cursor_focus = 0 " Don't follow with cursor until end
+                             " This protects the Braille display
+  g:Karaoke_on_msg = 'ready' " message when activated
+  g:Karaoke_off_msg = 'bye' " message when deactivated
+
+==============================================================================
+CONTACT                                   *karaoke-contact* *karaoke-author*
+
+To contact the author (Michael Arlt), please use GitHub:
+ https://github.com/qwertologe/karaoke.vim
+
+I greatly appreciate any suggestions or improvements offered for the script.
+
+==============================================================================
+LICENSE                                                     *karaoke-license*
+
+" Distributed under the GNU General Public License (GPL) 3.0 or higher
+" - see http://www.gnu.org/licenses/gpl.html

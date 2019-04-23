@@ -1,0 +1,18 @@
+#!/bin/bash -eu
+
+# This script makes use of a Mary TTS speech server
+# To use it visit http://mary.dfki.de/ or https://github.com/marytts/marytts
+
+### start configuration
+maryurl='http://localhost:59125'
+locale='de' # german
+speech='dfki-pavoque-neutral-hsmm' # german
+speed="${1:-1}" # default speed: 1 (normal)
+export AUDIODRIVER=alsa # play: don't try other devices
+### end configuration
+
+/usr/bin/curl --silent --get \
+  --data "INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=$locale&VOICE=$speech" \
+  --data-urlencode INPUT_TEXT@- \
+  "$maryurl/process" |
+/usr/bin/play - --no-show-progress speed "$speed" 2>/dev/null
